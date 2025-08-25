@@ -7,11 +7,10 @@ SELECT
     order_id,
     user_id,
     status,
-    gender,
     {{ string_to_timestamp('created_at') }} AS created_at,
     {{ string_to_timestamp('returned_At') }} AS returned_At,
     {{ string_to_timestamp('shipped_at') }} AS shipped_at,
     {{ string_to_timestamp('delivered_at') }} AS delivered_at,
-    num_of_item
+    num_of_item AS num_items_ordered
 FROM
     source
