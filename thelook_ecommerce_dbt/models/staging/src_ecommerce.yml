@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  - name: thelook_ecommerce
+  - name: raw
     database: thelook_ecommerce
     tables:
       - name: inventory_items
