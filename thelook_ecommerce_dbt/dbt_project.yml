@@ -35,3 +35,5 @@ models:
     +persist_docs: # Writes all of our column descriptions into Snowflake
       relation: true
       columns: true
+    # Table deletes 168 hours (7 days) after creation
+    +hours_to_expiration: 168
