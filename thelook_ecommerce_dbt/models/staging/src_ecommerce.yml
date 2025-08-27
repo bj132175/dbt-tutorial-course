@@ -4,6 +4,8 @@ sources:
   - name: raw
     database: thelook_ecommerce
     tables:
+      - name: events
+      
       - name: inventory_items
       
       - name: order_items
