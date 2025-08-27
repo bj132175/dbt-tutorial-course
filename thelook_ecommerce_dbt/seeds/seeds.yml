@@ -1,0 +1,20 @@
+version: 2
+
+seeds:
+  - name: thelook_ecommerce_distibution_centres
+    columns:
+      - name: id
+        data_type: INTEGER
+        tests:
+          - not_null
+          - unique
+
+      - name: name
+        data_type: STRING
+
+      - name: latitude
+        data_type: FLOAT
+        
+      - name: longitude
+        data_type: FLOAT
+    
