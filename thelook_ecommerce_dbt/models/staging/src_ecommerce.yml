@@ -5,7 +5,13 @@ sources:
     database: thelook_ecommerce
     tables:
       - name: inventory_items
+      
       - name: order_items
+      
       - name: orders
+      
       - name: products
+      
       - name: users
+
+      - name: distribution_centers
