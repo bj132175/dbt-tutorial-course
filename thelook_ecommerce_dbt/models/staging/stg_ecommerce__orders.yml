@@ -1,0 +1,59 @@
+version: 2
+
+models:
+  - name: stg_ecommerce__orders
+    description: 'Table of one row per order'
+    columns:
+      - name: order_id
+        data_type: NUMBER
+        tests:
+          - unique
+          - not_null
+
+      - name: user_id
+        data_type: NUMBER
+
+      - name: status
+        data_type: VARCHAR
+        description: "{{ doc('status') }}"
+        tests:
+          - accepted_values:
+              name: unexpected_order_status  # Named test for clear error messages
+              values:
+                - Processing
+                - Cancelled
+                - Shipped
+                - Complete
+                - Returned
+
+      - name: gender
+        data_type: VARCHAR
+
+      - name: created_at
+        data_type: TIMESTAMP_NTZ
+        tests:
+          - not_null
+
+      - name: returned_at
+        data_type: TIMESTAMP_NTZ
+        tests:
+          - not_null:
+              where: status = 'Returned'
+
+      - name: shipped_at
+        data_type: TIMESTAMP_NTZ
+        tests:
+          - not_null:
+              where: delivered_at IS NOT NULL OR status = 'Shipped'
+
+      - name: delivered_at
+        data_type: TIMESTAMP_NTZ
+        tests:
+          - not_null:
+              where: returned_at IS NOT NULL OR status = 'Complete'
+
+      - name: num_items_ordered
+        data_type: NUMBER
+        description: 'Number of items in the order'
+        tests:
+          - not_null

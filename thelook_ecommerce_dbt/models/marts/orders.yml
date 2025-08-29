@@ -1,0 +1,65 @@
+version: 2
+
+models:
+  - name: orders
+    description: "Table of order level information"
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - relationships:
+              field: order_id
+              to: ref('stg_ecommerce__orders')
+
+      - name: order_created_at
+
+      - name: order_returned_at
+
+      - name: order_delivered_at
+
+      - name: order_shipped_at
+
+      - name: order_status
+        description: "{{ doc('status') }}"
+
+      - name: num_items_ordered
+        description: "Number of items in the order"
+
+
+    # Columns from int_ecommerce__order_items_product
+    # We should test these columns as they're new
+      - name: total_sale_price
+        description: "Sum of item_sale_price for the whole order"
+        tests:
+          - not_null
+
+      - name: total_product_cost
+        description: "Sum of product_cost for the whole order"
+        tests:
+          - not_null
+
+      - name: total_profit
+        description: "Sum of (item_sale_price - product_cost) for the whole order"
+        tests:
+          - not_null
+
+      - name: total_discount
+        description: "Sum of (product_retail_price - item_sale_price) for the whole order"
+        tests:
+          - not_null
+
+      - name: total_sold_menswear
+        description: "Sum of item_sale_price for items in the Menswear department for this order"
+        tests:
+          - not_null
+
+      - name: total_sold_womenswear
+        description: "Sum of item_sale_price for items in the Womenswear department for this order"
+        tests:
+          - not_null
+
+    # Column from int_ecommerce__first_order_created
+      - name: days_since_first_order
+        description: "How many days there were between a user's first order and this one"
+        tests:
+          - not_null

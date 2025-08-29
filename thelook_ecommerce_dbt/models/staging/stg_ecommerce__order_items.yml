@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: stg_ecommerce__order_items
+    description: "Line items from orders"
+    columns:
+      - name: order_item_id
+        data_type: INTEGER
+        tests:
+          - not_null
+          - unique
+
+      - name: order_id
+        data_type: INTEGER
+        tests:
+          - not_null
+          - relationships:
+              field: order_id
+              to: ref('stg_ecommerce__orders')
+
+      - name: user_id
+        data_type: INTEGER
+        tests:
+          - not_null
+
+      - name: product_id
+        data_type: INTEGER
+        tests:
+          - not_null
+          - relationships:
+              field: product_id
+              to: ref('stg_ecommerce__products')
+
+      - name: item_sale_price
+        data_type: FLOAT64
+        description: "How much the item sold for"
+        tests:
+          - not_null

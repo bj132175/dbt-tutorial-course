@@ -1,0 +1,19 @@
+version: 2
+
+sources:
+  - name: raw
+    database: thelook_ecommerce
+    tables:
+      - name: events
+      
+      - name: inventory_items
+      
+      - name: order_items
+      
+      - name: orders
+      
+      - name: products
+      
+      - name: users
+
+      - name: distribution_centers
